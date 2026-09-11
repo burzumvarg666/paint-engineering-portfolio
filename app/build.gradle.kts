@@ -12,8 +12,13 @@ android {
         applicationId = "com.coatlab.app.internal"
         minSdk = 26
         targetSdk = 35
-        versionCode = 17
-        versionName = "1.5.3-internal"
+        versionCode = 18
+        versionName = "1.5.4-internal"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -23,6 +28,10 @@ android {
     packaging {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
