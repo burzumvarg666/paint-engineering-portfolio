@@ -19,8 +19,13 @@ jobs:
         with:
           gradle-version: '8.10.2'
       - name: Build APK
-        run: gradle :app:assembleDebug --stacktrace
+        run: |
+          set -o pipefail
+          gradle :app:assembleDebug --console=plain 2>&1 | tee build.log
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: CoatLab-v1.5.2-internal-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: CoatLab-build-output
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            build.log
